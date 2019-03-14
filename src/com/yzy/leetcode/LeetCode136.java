@@ -1,6 +1,5 @@
 package com.yzy.leetcode;
 
-import com.yzy.common.ListNode;
 
 /**
  * Description:
@@ -33,7 +32,7 @@ public class LeetCode136 {
         System.out.println(res);
     }
 
-    //位运算的妙用
+    //位运算的妙用 异或运算特性：整数n与自己异或的结果为0, 0与整数n异或的结果为n
     public static int solution(int[] nums) {
         int n = 0;
         for (int i : nums) {
