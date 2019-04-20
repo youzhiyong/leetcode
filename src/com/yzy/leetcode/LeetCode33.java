@@ -39,9 +39,6 @@ public class LeetCode33 {
         if (nums.length == 1 || nums[0] == target) return 0;
         else return -1;
 
-
-
-        return -1;
     }
 
 }
