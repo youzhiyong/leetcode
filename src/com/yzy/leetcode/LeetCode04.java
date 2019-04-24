@@ -26,7 +26,19 @@ package com.yzy.leetcode;
 public class LeetCode04 {
 
     public static void main(String[] args) {
+        int[] num1 = {1,2};
+        int[] num2 = {3,4};
+        int i = solution(num1, num2);
+        System.out.println(i);
+    }
 
+    public static int solution(int[] nums1, int[] nums2) {
+        int mid = (nums1.length + nums2.length)/2 + 1;
+
+
+
+
+        return 0;
     }
 
 }

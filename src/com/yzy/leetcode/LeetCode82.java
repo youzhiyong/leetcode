@@ -26,17 +26,20 @@ public class LeetCode82 {
         ListNode node3 = new ListNode(2);
         ListNode node4 = new ListNode(2);
         ListNode node5 = new ListNode(4);
+        ListNode node6 = new ListNode(4);
+        ListNode node7 = new ListNode(5);
         head.next = node2;
         node2.next = node3;
         node3.next = node4;
         node4.next = node5;
+        node5.next = node6;
+        node6.next = node7;
 
-        head = solution(head);
+        head = solution2(head);
         System.out.println(head);
     }
 
     public static ListNode solution(ListNode head) {
-        if (head == null || head.next == null) return head;
         ListNode node = new ListNode(-1);
         node.next = head;
         ListNode p = node;
@@ -44,15 +47,33 @@ public class LeetCode82 {
             int val = p.next.val;
             ListNode end = p.next;
             if (end.next != null && end.next.val == val) {
-                while (end.next != null && end.next.val == val) {
+                do {
                     end = end.next;
-                }
+                } while (end.next != null && end.next.val == val);
                 p.next = end.next;
             } else {
                 p = p.next;
             }
         }
         return node.next;
+    }
+
+    //更改题目要求：要求保留一个重复的元素
+    public static ListNode solution2(ListNode head) {
+        ListNode p = head;
+        while (p != null) {
+            int val = p.val;
+            ListNode end = p.next;
+            if (end != null && end.val == val) {
+                do {
+                    end = end.next;
+                } while (end != null && end.val == val);
+                p.next = end;
+            } else {
+                p = p.next;
+            }
+        }
+        return head;
     }
 
 }

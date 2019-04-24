@@ -31,7 +31,7 @@ public class LeetCode86 {
         node4.next = node5;
         node5.next = node6;
 
-        head = solution(head, 3);
+        head = solution2(head, 3);
         System.out.println(head);
     }
 
@@ -41,7 +41,7 @@ public class LeetCode86 {
         node.next = head;
         ListNode p = node;
         ListNode midNode = null;
-        while (p != null && p.next != null) {
+        while (p.next != null) {
             int val = p.next.val;
             if (val >= x && midNode == null) {
                 midNode = p.next;
@@ -59,5 +59,29 @@ public class LeetCode86 {
         }
         return node.next;
     }
+
+    public static ListNode solution2(ListNode head, int x) {
+        ListNode node1 = new ListNode(-1); //左边的node
+        ListNode node2 = new ListNode(-1); //右边的node
+        ListNode p1 = node1; // 指向node1最后的元素
+        ListNode p2 = node2; // 指向node2最后的元素
+
+        while (head != null) {
+            if (head.val >= x) {
+                p2.next = head;
+                p2 = p2.next;
+                head = head.next;
+                p2.next = null;
+            } else {
+                p1.next = head;
+                p1 = p1.next;
+                head = head.next;
+            }
+        }
+        p1.next = node2.next;
+        return node1.next;
+    }
+
+
 
 }

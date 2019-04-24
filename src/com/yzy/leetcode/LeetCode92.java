@@ -17,8 +17,6 @@ import java.util.List;
  输入: 1->2->3->4->5->NULL, m = 2, n = 4
  输出: 1->4->3->2->5->NULL
 
- 解题思想：提前记录翻转区域的前一个节点和后一个节点，然后把翻转区域提取出来单独处理
-
  * Date: 2019-02-27
  *
  * @author youzhiyong
@@ -40,6 +38,7 @@ public class LeetCode92 {
         System.out.println(head);
     }
 
+    //次解法似乎不满足题目要求 提前记录翻转区域的前一个节点和后一个节点，然后把翻转区域提取出来单独处理
     public static ListNode solution(ListNode head, int m, int n) {
         if (head == null || head.next == null) return head;
         ListNode p = new ListNode(-1);

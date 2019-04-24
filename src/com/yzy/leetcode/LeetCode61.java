@@ -41,7 +41,7 @@ public class LeetCode61 {
         node3.next = node4;
 
         //head = solution(head, 4);
-        head = solution2(head, 2);
+        head = solution3(head, 2);
         System.out.println(head);
     }
 
@@ -82,6 +82,30 @@ public class LeetCode61 {
         list.get(list.size() - 1).next = list.get(0);  //将原先的头接到原先的尾部，形成闭环
         list.get(list.size() - n - 1).next = null;  //解除闭环
 
+        return head;
+    }
+
+    //快慢指针法 快指针比满指针快 k % head.length 个步长
+    public static ListNode solution3(ListNode head, int k) {
+        if (head == null) return head;
+        ListNode node = head;
+        int len = 1;
+        while ((node = node.next) != null) len++;
+        k %= len;
+        int i = 0;
+        ListNode slowNode = head;
+        ListNode fastNode = head;
+        while (k > 0) {
+            fastNode = fastNode.next;
+            k--;
+        }
+        while (fastNode.next != null) {
+            slowNode = slowNode.next;
+            fastNode = fastNode.next;
+        }
+        fastNode.next = head;
+        head = slowNode.next;
+        slowNode.next = null;
         return head;
     }
 

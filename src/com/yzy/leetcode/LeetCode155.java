@@ -68,9 +68,9 @@ public class LeetCode155 {
             }
         }
 
-        public void pop() {
+        public int pop() {
             stack.pop();
-            stack.pop();
+            return stack.pop();
         }
 
         public int top() {

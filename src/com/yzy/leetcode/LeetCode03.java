@@ -28,8 +28,8 @@ import java.util.*;
  */
 public class LeetCode03 {
     public static void main(String[] args) {
-        String input = "abcabcbb";
-        int res = solution(input);
+        String input = "bbbbb";
+        int res = solution2(input);
         System.out.println(res);
     }
 
@@ -49,6 +49,29 @@ public class LeetCode03 {
                 indexs.add(i);
                 maxLen = maxLen >= values.size() ? maxLen : values.size();
             }
+        }
+        return maxLen;
+    }
+
+    /**
+     * 双指针解法，第一个指针指向子串头部，第二个向后移动
+     * @param s
+     * @return
+     */
+    public static int solution2(String s) {
+        Set<Character> set = new HashSet<>();  //最新 子串列表
+        int maxLen = 0, i = 0, j = 0;  //最大长度
+        for (; i<s.length(); i++) {
+            for (j=i; j<s.length(); j++) {
+                char ch = s.charAt(j);
+                if (!set.add(ch)) {
+                    maxLen = maxLen >= set.size() ? maxLen : set.size();
+                    set.clear();
+                    break;
+                }
+                maxLen = maxLen >= set.size() ? maxLen : set.size();
+            }
+            if (j == s.length()) break;
         }
         return maxLen;
     }

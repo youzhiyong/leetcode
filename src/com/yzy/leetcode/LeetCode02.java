@@ -34,12 +34,12 @@ public class LeetCode02 {
         head1.next = node12;
         node12.next = node13;
 
-        ListNode res = solution(head, head1);
+        ListNode res = solution2(head, head1);
         System.out.println(res);
     }
 
     public static ListNode solution(ListNode l1, ListNode l2) {
-        int n = 0;
+        int n = 0; //进位标识
         ListNode first = null;
         ListNode last = null;
         while (l1 != null || l2 != null || n != 0) {
@@ -65,5 +65,28 @@ public class LeetCode02 {
             }
         }
         return first;
+    }
+
+
+    public static ListNode solution2(ListNode l1, ListNode l2) {
+        int n = 0; //进位标识
+        ListNode head = new ListNode(0);  //链表问题 首选添加一个头部
+        ListNode currentNode = head;
+        while (l1 != null || l2 != null || n != 0) {
+            int sum = n;
+            if (l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+            ListNode node = new ListNode(sum % 10);
+            n = sum / 10;
+            currentNode.next = node;
+            currentNode = node;
+        }
+        return head.next;
     }
 }

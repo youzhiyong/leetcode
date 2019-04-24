@@ -49,15 +49,38 @@ import com.yzy.common.ListNode;
 public class LeetCode27 {
 
     public static void main(String[] args) {
-        int[] input = new int[]{1, 2, 3, 4};
+        int[] input = new int[]{1, 2, 1, 4};
 
         int head = solution(input, 1);
         System.out.println(head);
     }
 
     public static int solution(int[] nums, int val) {
-
-        return 1;
+        int p = 0; //记录当前有效长度
+        for (int i : nums) {
+            if (val != i) { //不相等，并将元素放入有效长度对应的地址上，有效长度加1
+                nums[p] = i;
+                p++;
+            } else {
+                //相等，则抛弃这个元素，有效长度不变
+            }
+        }
+        return p;
     }
 
+    public static int solution2(int[] nums, int val) {
+        if (nums.length == 0) return 0;
+        int i = 0;
+        int len = nums.length;
+        int j = len - 1;
+
+        for (; i <= j; i++) {
+            if (nums[i] == val) {
+                nums[i] = nums[j];
+                j--;
+                len--;
+            }
+        }
+        return len;
+    }
 }
