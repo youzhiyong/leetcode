@@ -30,6 +30,10 @@ package com.yzy.leetcode;
 
  输入: 4
  输出: "1211"
+
+
+ 执行用时 : 5 ms, 在Count and Say的Java提交中击败了77.55% 的用户
+ 内存消耗 : 34 MB, 在Count and Say的Java提交中击败了92.74% 的用户
  * Date: 2019-02-27
  *
  * @author youzhiyong
@@ -37,15 +41,31 @@ package com.yzy.leetcode;
 public class LeetCode38 {
 
     public static void main(String[] args) {
-        int[] input = new int[]{1,3,5,6};
 
-        int head = solution(input, 0);
+        String head = solution(9);
         System.out.println(head);
     }
 
-    public static int solution(int[] nums, int target) {
-        //todo
-        return 0;
+    public static String solution(int n) {
+        StringBuilder builder = new StringBuilder("1");
+        StringBuilder newBuilder = new StringBuilder();
+        while (n > 1) {
+            int num = 1;
+            char ch = builder.charAt(0);
+            for (int i=1; i<builder.length();i++) {
+                if (builder.charAt(i) == ch) num++;
+                else {
+                    newBuilder.append(num).append(ch);
+                    num = 1;
+                    ch = builder.charAt(i);
+                }
+            }
+            newBuilder.append(num).append(ch);
+            builder.delete(0, builder.length()).append(newBuilder);
+            newBuilder.delete(0, newBuilder.length());
+            n--;
+        }
+        return builder.toString();
     }
 
 }
