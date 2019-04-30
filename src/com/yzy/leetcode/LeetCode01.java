@@ -1,5 +1,8 @@
 package com.yzy.leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Description:
  给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
@@ -19,10 +22,10 @@ package com.yzy.leetcode;
  */
 public class LeetCode01  {
     public static void main(String[] args) {
-        int[] nums = new int[]{2, 7, 11, 15};
+        int[] nums = new int[]{2, 5, 7, 11, 15};
         int target = 9;
-        int[] res = solution(nums, target);
-        System.out.println(res);
+        int[] res = solution1(nums, target);
+        System.out.println("" + res[0] + ":" + res[1]);
     }
 
     public static int[] solution(int[] nums, int target) {
@@ -37,5 +40,35 @@ public class LeetCode01  {
             }
         }
         return res;
+    }
+
+    //两遍hash表 ，
+    public static int[] solution1(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>(); //key为数组元素的值，value为数组元素下标
+
+        for (int i=0; i < nums.length; i++) {
+            map.put(nums[i], i);
+        }
+
+        for (int i=0; i < nums.length; i++) {
+            int remain = target - nums[i];
+            if (map.containsKey(remain) && map.get(remain) != null) {
+                return new int[]{i, map.get(remain)};  //map中的下标在后
+            }
+        }
+        return null;
+    }
+
+    //一遍hash表 ，
+    public static int[] solution2(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>(); //key为数组元素的值，value为数组元素下标
+        for (int i=0; i < nums.length; i++) {
+            int remain = target - nums[i];
+            if (map.containsKey(remain) && map.get(remain) != null) {
+                return new int[]{map.get(remain), i}; //map中的下标在前
+            }
+            map.put(nums[i], i);
+        }
+        return null;
     }
 }

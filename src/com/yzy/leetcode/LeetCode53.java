@@ -1,5 +1,7 @@
 package com.yzy.leetcode;
 
+import java.util.Map;
+
 /**
  * Description:
 
@@ -20,15 +22,40 @@ package com.yzy.leetcode;
 public class LeetCode53 {
 
     public static void main(String[] args) {
-        int[] input = new int[]{1,3,5,6};
+        int[] input = new int[]{-2,1,-3,4,-1,2,1,-5,4};
 
-        int head = solution(input, 0);
+        int head = solution1(input);
         System.out.println(head);
     }
 
-    public static int solution(int[] nums, int target) {
-        //todo
-        return 0;
+    //暴力法
+    public static int solution(int[] nums) {
+        int max = 0;
+        int sum = 0;
+        for (int i=0; i<nums.length - 1; i++) {
+            sum = nums[i];
+            for (int j=i + 1; j<nums.length; j++) {
+                sum += nums[j];
+                max = Math.max(sum, max);
+            }
+        }
+        return max;
+    }
+
+    // 假设sum<=0，那么后面的子序列肯定不包含目前的子序列，所以令sum = num；
+    // 如果sum > 0对于后面的子序列是有好处的 则相加
+    // res = Math.max(res, sum)保证可以找到最大的子序和
+    public static int solution1(int[] nums) {
+        int max = nums[0];
+        int sum = 0;
+        for (int i : nums) {
+            if (sum > 0)
+                sum += i;
+            else
+                sum = i;
+            max = Math.max(sum, max);
+        }
+        return max;
     }
 
 }
