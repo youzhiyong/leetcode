@@ -41,7 +41,7 @@ public class LeetCode61 {
         node3.next = node4;
 
         //head = solution(head, 4);
-        head = solution3(head, 2);
+        head = solution(head, 2);
         System.out.println(head);
     }
 
@@ -67,6 +67,7 @@ public class LeetCode61 {
         return head;
     }
 
+    //solution 的优化版
     public static ListNode solution2(ListNode head, int k) {
         if (head == null) return head;
         List<ListNode> list = new ArrayList<>();
