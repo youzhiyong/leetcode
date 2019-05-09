@@ -81,7 +81,7 @@ public class LeetCode100 {
         }
     }
 
-    //代码优化
+    //代码精简
     public static boolean equal2(TreeNode p, TreeNode q) {
         if (p == null && q == null) return true;
         else if (q == null) return false;
