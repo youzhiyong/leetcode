@@ -1,6 +1,5 @@
 package com.yzy.leetcode;
 
-import com.yzy.common.ListNode;
 import com.yzy.common.TreeNode;
 
 /**

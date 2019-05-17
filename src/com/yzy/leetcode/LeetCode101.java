@@ -52,7 +52,6 @@ public class LeetCode101 {
         root2.left = root5;
         root2.right = root6;
 
-
         boolean head = solution2(root);
         System.out.println(head);
     }
