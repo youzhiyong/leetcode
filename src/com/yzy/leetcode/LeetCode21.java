@@ -39,7 +39,7 @@ public class LeetCode21 {
     public static ListNode solution(ListNode l1,ListNode l2) {
         ListNode head = new ListNode(0);
         ListNode current = head;
-        while (l1 != null && l2 != null) {
+        while (l1 != null && l2 != null) {  //有一个链表为空，则退出循环
             if (l1.val < l2.val) {
                 current.next = l1;
                 l1 = l1.next;
@@ -48,7 +48,10 @@ public class LeetCode21 {
                 l2 = l2.next;
             }
             current = current.next;
+            current.next = null;
         }
+
+        //将不为空的链表添加到尾部
         if (l1 == null) {
             current.next = l2;
         } else {

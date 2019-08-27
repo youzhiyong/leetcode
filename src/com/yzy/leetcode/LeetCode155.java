@@ -58,13 +58,8 @@ public class LeetCode155 {
                 stack.push(x);
                 stack.push(x);
             } else {
-                int min = stack.peek();
                 stack.push(x);
-                if (x < min) {
-                    stack.push(x);
-                } else {
-                    stack.push(min);
-                }
+                stack.push(Math.min(x, stack.peek()));
             }
         }
 

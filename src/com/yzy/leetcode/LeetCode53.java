@@ -1,7 +1,5 @@
 package com.yzy.leetcode;
 
-import java.util.Map;
-
 /**
  * Description:
 
@@ -44,16 +42,18 @@ public class LeetCode53 {
 
     // 假设sum<=0，那么后面的子序列肯定不包含目前的子序列，所以令sum = num；
     // 如果sum > 0对于后面的子序列是有好处的 则相加
-    // res = Math.max(res, sum)保证可以找到最大的子序和
+    // max = Math.max(sum, max) 保证可以找到最大的子序和
     public static int solution1(int[] nums) {
         int max = nums[0];
         int sum = 0;
-        for (int i : nums) {
-            if (sum > 0)
-                sum += i;
-            else
-                sum = i;
-            max = Math.max(sum, max);
+
+        for (int n : nums) {
+            if (sum > 0) {
+                sum += n;
+            } else {
+                sum = n;
+            }
+            max = Math.max(max, sum);
         }
         return max;
     }

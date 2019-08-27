@@ -17,7 +17,7 @@ public class TestOomOfHeap {
         List<OOMObject> list = new ArrayList<>();
         int num = 0;
         while (true) {
-            //System.out.println(++num);
+            System.out.println(++num);
             //Thread.sleep(1);
             list.add(new OOMObject());
         }

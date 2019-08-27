@@ -1,6 +1,8 @@
 package com.yzy.leetcode;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Description:
@@ -26,7 +28,7 @@ public class LeetCode136 {
 
     public static void main(String[] args) {
         int[] nums = new int[] {1, 1, 2, 3, 2};
-        int res = solution(nums);
+        int res = solution2(nums);
         System.out.println(res);
     }
 
@@ -37,6 +39,19 @@ public class LeetCode136 {
             n ^= i;
         }
         return n;
+    }
+
+    //常规解法 使用set
+    public static int solution2(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int n : nums) {
+            if (set.contains(n)) {
+                set.remove(n);
+            } else {
+                set.add(n);
+            }
+        }
+        return (Integer)set.toArray()[0];
     }
 
 

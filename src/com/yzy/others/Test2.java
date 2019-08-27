@@ -16,9 +16,9 @@ public class Test2 {
         return (v) -> !Objects.equals(v, t);
     }
     public static void main(String[] args) {
-        List.of(1, 2, 3)
+        /*List.of(1, 2, 3)
                 .stream()
                 .filter(notEqual(1))
-                .forEach(System.out::println);
+                .forEach(System.out::println);*/
     }
 }

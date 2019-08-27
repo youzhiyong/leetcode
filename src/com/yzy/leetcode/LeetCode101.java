@@ -74,9 +74,9 @@ public class LeetCode101 {
         List<TreeNode> roots = new ArrayList<>();
         roots.add(root.left);
         roots.add(root.right);
+        List<TreeNode> newRoots = new ArrayList<>();
         while (true) {
             int size = roots.size();
-            List<TreeNode> newRoots = new ArrayList<>();
             for (int i = 0; i < roots.size() / 2; i++) {
                 TreeNode left = roots.get(i);
                 TreeNode right = roots.get(size - 1- i);
@@ -91,7 +91,9 @@ public class LeetCode101 {
                 newRoots.add(node.right);
             }
             if (newRoots.size() == 0) return true;
-            roots = newRoots;
+            roots.clear();
+            roots.addAll(newRoots);
+            newRoots.clear();
         }
     }
 

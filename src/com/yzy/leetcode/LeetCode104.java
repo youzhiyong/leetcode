@@ -3,6 +3,9 @@ package com.yzy.leetcode;
 import com.yzy.common.ListNode;
 import com.yzy.common.TreeNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Description:
  给定一个二叉树，找出其最大深度。
@@ -48,16 +51,39 @@ public class LeetCode104 {
         root2.right = root6;
         root2.left = root5;
 
-        int res = solution(root);
+        int res = solution2(root);
         System.out.println(res);
     }
 
+    //递归
     public static int solution(TreeNode root) {
         if (root == null) return 0;
         int left = solution(root.left);
         int right = solution(root.right);
 
         return (left > right ? left:right) + 1;
+    }
+
+    //迭代
+    public static int solution2(TreeNode root) {
+        if (root == null) return 0;
+        int n = 0;
+        List<TreeNode> nodes = new ArrayList<>();
+        nodes.add(root);
+
+        List<TreeNode> newNodes = new ArrayList<>();
+        while (nodes.size() > 0) {
+            n++;
+            for (TreeNode node : nodes) {
+                if (node.left != null) newNodes.add(node.left);
+                if (node.right != null) newNodes.add(node.right);
+            }
+            nodes.clear();
+            nodes.addAll(newNodes);
+            newNodes.clear();
+        }
+
+        return n;
     }
 
 

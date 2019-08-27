@@ -36,15 +36,29 @@ public class LeetCode190 {
 
     public static void main(String[] args) {
 
-        int n = 43261596;
+        int n = 3;
         //964176192
-        int head = solution(n);
+        int head = solution2(n);
         System.out.println(head);
 
     }
 
     public static int solution(int n) {
         return Integer.reverse(n);
+    }
+
+    // 有符号右移>>（若正数,高位补0,负数,高位补1）
+    // 无符号右移>>>(不论正负,高位均补0)
+    // 注意：负数需要转换成补码 即符号位不变，其余补位 按位取反，末位加一
+    public static int solution2(int n) {
+        int result = 0;
+        for (int i = 0; i < 32; i++) {  //一次循环操作：把n的末位的第i位的数值 赋值到 result的高位第i的位置
+            int temp = n >> i;  // 这里用 >> 或者 >>>都可以，因为下一步会重置不需要的数据
+            temp = temp & 1;
+            temp = temp << (31 - i);
+            result = result | temp;
+        }
+        return result;
     }
 
 

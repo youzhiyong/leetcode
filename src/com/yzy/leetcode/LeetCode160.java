@@ -101,6 +101,7 @@ public class LeetCode160 {
 
         pA = headA;
         pB = headB;
+        //对齐长度
         if (lenA > lenB) {
             while (lenA != lenB) {
                 pA = pA.next;
@@ -112,6 +113,8 @@ public class LeetCode160 {
                 lenB--;
             }
         }
+
+        //查找相交节点
         while (pA != pB) {
             pA = pA.next;
             pB = pB.next;

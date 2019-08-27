@@ -20,7 +20,6 @@ import java.util.Set;
  2. 若有第二个闭环，则第二个闭环的起始位置是前一个闭环的起始位置的后一个 错误！！！  第二个闭环的起始位置需要记录
  3. 比较两个闭环的长度，更新起始和结束位置
 
- 不明白 回文子串 ？？？ 测试不通过
  * Date: 2019-02-27
  *
  * @author youzhiyong
@@ -28,8 +27,8 @@ import java.util.Set;
 public class LeetCode05 {
 
     public static void main(String[] args) {
-        String input = "babad";
-        String res = solution(input);
+        String input = "babab";
+        String res = solution2(input);
         System.out.println(res);
     }
 
@@ -61,6 +60,37 @@ public class LeetCode05 {
         }
         return s.substring(begin, endIndex + 1);
 
+    }
+
+    public static String solution2(String s) {
+        if (s == null || s.length() < 1) return "";
+        int len = s.length();
+
+        boolean flag[][] = new boolean[len][len];
+        int left = 0; //最长回文子串的左索引
+        int right = 0;//最长回文子串的右索引
+
+        for (int i=0; i<len; i++) {
+
+            int j = i;
+
+            while (j >= 0) {
+
+                if ((s.charAt(i) == s.charAt(j)) && (i-j < 2 || flag[j+1][i-1])) {
+                    flag[j][i] = true;
+
+                    if (i - j > right - left) {
+                        right = i;
+                        left = j;
+                    }
+
+                }
+                j--;
+            }
+
+        }
+
+        return s.substring(left, right+1);
     }
 
 }
