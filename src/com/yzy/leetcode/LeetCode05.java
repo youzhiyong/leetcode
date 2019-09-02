@@ -62,6 +62,12 @@ public class LeetCode05 {
 
     }
 
+    /**
+     * 从左开始，遍历每一个子串，并记录是否是回文串，为后面的做铺垫
+     * 如要判断子串 s(i,j) 是否是回文，则需要判断 s(i)是否等于s(j) 以及 s(i+1, j-1) 是否为回文, ---这里 (j - i > 2),如果 j-i <=2,则只需要判断 s(i) 是否等于s(j)即可
+     * @param s
+     * @return
+     */
     public static String solution2(String s) {
         if (s == null || s.length() < 1) return "";
         int len = s.length();
@@ -72,11 +78,11 @@ public class LeetCode05 {
 
         for (int i=0; i<len; i++) {
 
-            int j = i;
+            int j = i - 1;
 
             while (j >= 0) {
 
-                if ((s.charAt(i) == s.charAt(j)) && (i-j < 2 || flag[j+1][i-1])) {
+                if ((s.charAt(i) == s.charAt(j)) && (i-j <= 2 || flag[j+1][i-1])) {
                     flag[j][i] = true;
 
                     if (i - j > right - left) {
