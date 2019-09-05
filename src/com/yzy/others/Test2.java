@@ -20,5 +20,13 @@ public class Test2 {
                 .stream()
                 .filter(notEqual(1))
                 .forEach(System.out::println);*/
+
+        StringBuffer builder = new StringBuffer();
+
+        builder.append("a");
+        builder.append((Integer)null);
+
+        System.out.println(builder);
+
     }
 }
