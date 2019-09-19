@@ -78,7 +78,7 @@ public class Test {
         System.out.println(date.before(date2));
         JSONObject jsonObject = JSONObject.parseObject("1001");
         System.out.println(jsonObject);*/
-
+/*
         List<A> list1 = new ArrayList<>();
         list1.add(new A("aaa", 1));
         list1.add(new A("bbb", 2));
@@ -95,7 +95,15 @@ public class Test {
 
         }
 
-        System.out.println(list1);
+        System.out.println(list1);*/
+
+        String str = "Z";
+
+        if (!str.equalsIgnoreCase("T") || !str.equalsIgnoreCase("Z")) {
+            System.out.println(111);
+        } else {
+            System.out.println(222);
+        }
 
     }
 

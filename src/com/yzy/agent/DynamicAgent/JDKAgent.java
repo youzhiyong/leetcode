@@ -7,7 +7,7 @@ import java.lang.reflect.Proxy;
 /**
  * Description:
  * 1. InvocationHandler
- * 2. Proxy
+ * 2. Proxy.newProxyInstance
  * Date: 2019-08-28
  *
  * @author youzhiyong

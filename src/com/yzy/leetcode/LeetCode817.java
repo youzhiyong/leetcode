@@ -3,7 +3,9 @@ package com.yzy.leetcode;
 import com.yzy.common.ListNode;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -62,23 +64,34 @@ public class LeetCode817 {
 
     }
 
+    /**
+     *
+     * @param head
+     * @param G
+     * @return
+     */
     public static int solution(ListNode head, int[] G) {
-        List list = Arrays.stream(G).boxed().collect(Collectors.toList());
+        //List list = Arrays.stream(G).boxed().collect(Collectors.toList());
+        Set<Integer> set = new HashSet<>();
+        for (int i : G) {
+            set.add(i);
+        }
 
-        int max = 0;
         int num = 0;
+        boolean flag = false;
         while (head != null) {
-            if (list.contains(head.val)) {
+            if (set.contains(head.val)) {
+                flag = true;
+            } else if (flag){
                 num++;
-                max = max > num ? max : num;
-            } else {
-                max = max > num ? max : num;
-                num = 0;
+                flag = false;
             }
             head = head.next;
         }
 
-        return max;
+        if (flag) num++;
+
+        return num;
     }
 
 
