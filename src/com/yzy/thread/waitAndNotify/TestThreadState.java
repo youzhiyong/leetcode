@@ -43,6 +43,15 @@ public class TestThreadState {
 
         //打印线程信息
         ThreadUtils.printAllThreadStatus();
+
+
+        ThreadUtils.sleep(10);
+
+
+        //打印线程信息
+        ThreadUtils.printAllThreadStatus();
+
+
     }
 
     static class Waiting implements Runnable {   // waiting

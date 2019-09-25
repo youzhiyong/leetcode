@@ -1,5 +1,7 @@
 package com.yzy.thread.concurrent;
 
+import sun.misc.Unsafe;
+
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
@@ -22,6 +24,14 @@ public class MyLock implements Lock {
      * 3. protected int tryAcquireShared(int arg)   尝试获取共享锁
      * 4. protected boolean tryReleaseShared(int arg)  尝试释放共享锁
      * 5. protected boolean isHeldExclusively()      是否处于占用状态
+     *
+     * 同步器(AbstractQueuedSynchronizer) 中有一个重要的实现原子操作字段 UnSafe CAS操作
+     *
+     * UnSafe.objectFieldOffset(Field f)   获取类中某个字段的内存偏移
+     * UnSafe.compareAndSwapInt(Object o, Long offset, int expect, int newValue)    o:对象，offset:要修改的字段在对象o中的内存偏移(定位字段) expect：期望值(原值)  newValue:修改后的值
+     * UnSafe.compareAndSwapObject(Object o, Long offset, Object expect, Object newValue)    o:对象，offset:要修改的字段在对象o中的内存偏移(定位字段) expect：期望值(原值)  newValue:修改后的值
+     * UnSafe.compareAndSwapObject(Object o, Long offset, Long expect, Long newValue)    o:对象，offset:要修改的字段在对象o中的内存偏移(定位字段) expect：期望值(原值)  newValue:修改后的值
+     *
      *
      */
     static final class Sync extends AbstractQueuedSynchronizer {

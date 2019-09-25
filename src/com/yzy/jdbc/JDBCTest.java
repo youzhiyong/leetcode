@@ -19,8 +19,9 @@ public class JDBCTest {
         ResultSet resultSet = null;
 
         try {
+            //加载驱动
             Class.forName("com.mysql.jdbc.Driver");
-
+            //建立连接
             connection = DriverManager.getConnection(url, username, password);
 
             String sql = "select * from user where id=?";
