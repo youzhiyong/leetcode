@@ -59,7 +59,7 @@ public class LeetCode27 {
         int p = 0; //记录当前有效长度
         for (int i : nums) {
             if (val != i) { //不相等，并将元素放入有效长度对应的地址上，有效长度加1
-                nums[p] = i;
+                nums[p] = i;  //  ???
                 p++;
             } else {
                 //相等，则抛弃这个元素，有效长度不变

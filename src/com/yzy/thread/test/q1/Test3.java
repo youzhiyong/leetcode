@@ -7,6 +7,8 @@ import java.util.concurrent.CyclicBarrier;
  * Description:
  * Date: 2019-09-19
  *
+ * 使用CyclicBarrier
+ *
  * @author youzhiyong
  */
 public class Test3 {
@@ -24,9 +26,7 @@ public class Test3 {
                     cyclicBarrierA.await();
                 }
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (BrokenBarrierException e) {
+            } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }
 
@@ -42,13 +42,10 @@ public class Test3 {
                     cyclicBarrierA.await();
                 }
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (BrokenBarrierException e) {
+            } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }
         }).start();
-
 
     }
 

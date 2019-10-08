@@ -6,6 +6,8 @@ import java.util.concurrent.CountDownLatch;
  * Description:
  * Date: 2019-09-19
  *
+ * 使用CountDownLatch
+ *
  * @author youzhiyong
  */
 public class Test2 {

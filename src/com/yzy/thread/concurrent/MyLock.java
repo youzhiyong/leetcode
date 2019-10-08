@@ -69,6 +69,10 @@ public class MyLock implements Lock {
         protected boolean isHeldExclusively() {
             return getState() == 1;
         }
+
+        final ConditionObject newCondition() {
+            return new ConditionObject();
+        }
     }
 
     //将锁操作代理到sync上
@@ -122,6 +126,6 @@ public class MyLock implements Lock {
 
     @Override
     public Condition newCondition() {
-        return null;
+        return sync.newCondition();
     }
 }

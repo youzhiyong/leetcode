@@ -27,7 +27,7 @@ package com.yzy.singleton;
 public class Singleton {
 
     /** private volatile Singleton instance; **/
-    private Singleton instance;
+    private volatile Singleton instance;
 
     public Singleton getInstance() {
         if (instance == null) {   //1

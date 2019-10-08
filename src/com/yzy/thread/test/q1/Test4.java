@@ -7,6 +7,8 @@ import java.util.concurrent.Semaphore;
  * Description:
  * Date: 2019-09-19
  *
+ * 使用Semaphore
+ *
  * @author youzhiyong
  */
 public class Test4 {

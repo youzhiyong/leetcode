@@ -22,7 +22,7 @@ package com.yzy.sort;
 public class SortUtils {
 
     public static void main(String[] args) {
-        int[] nums = new int[] {9,9,9,9,9,9,1,2,3,5,4,2,9};
+        int[] nums = new int[] {8,9,1,7,9,6,1,2,3,5,4,2,9};
 
         quickSort(nums);
 
@@ -109,6 +109,8 @@ public class SortUtils {
 
     public static void quickSortCore(int[] arr, int start, int end) {
 
+        if (start >= end) return;
+
         int targe = arr[start];
         int i = start;
         int j = end;
@@ -127,8 +129,10 @@ public class SortUtils {
 
         }
 
-        arr[start] = arr[i];
-        arr[i] = targe;
+        if (i > start) {   //当指针i有移动时才和targe交换，没有移动时 arr[i]就是targe不需要交换
+            arr[start] = arr[i];
+            arr[i] = targe;
+        }
 
         quickSortCore(arr, start, i-1);
 

@@ -6,6 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Description:
  * Date: 2019-09-19
+ * 使用可重入锁和Condition
  *
  * @author youzhiyong
  */
@@ -22,9 +23,12 @@ public class Test5 {
                 for (int i=0; i<10;i++) {
                     System.out.print("A");
                     reentrantLock.lock();
-                    condition.signal();
-                    condition.await();
-                    reentrantLock.unlock();
+                    try {
+                        condition.signal();
+                        condition.await();
+                    } finally {
+                        reentrantLock.unlock();
+                    }
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -36,10 +40,13 @@ public class Test5 {
             try {
                 for (int i=0; i<10;i++) {
                     reentrantLock.lock();
-                    condition.await();
-                    System.out.println("B");
-                    condition.signal();
-                    reentrantLock.unlock();
+                    try {
+                        condition.await();
+                        System.out.println("B");
+                        condition.signal();
+                    } finally {
+                        reentrantLock.unlock();
+                    }
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

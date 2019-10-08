@@ -63,7 +63,7 @@ public class LeetCode100 {
     }
 
     public static boolean solution(TreeNode p, TreeNode q) {
-        return equal(p ,q);
+        return equal2(p ,q);
     }
 
     public static boolean equal(TreeNode p, TreeNode q) {
@@ -85,7 +85,7 @@ public class LeetCode100 {
         if (p == null && q == null) return true;
         else if (q == null) return false;
         else if (p == null) return false;
-        else return p.val == q.val && equal(p.left, q.left) && equal(p.right, q.right);
+        else return p.val == q.val && equal2(p.left, q.left) && equal2(p.right, q.right);
     }
 
 
