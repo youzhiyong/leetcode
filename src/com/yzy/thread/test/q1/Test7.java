@@ -1,10 +1,7 @@
 package com.yzy.thread.test.q1;
 
-import com.yzy.thread.ThreadUtils;
-import com.yzy.thread.concurrent.TestExchanger;
 
 import java.util.concurrent.Exchanger;
-import java.util.concurrent.locks.LockSupport;
 
 /**
  * Description:
@@ -14,9 +11,6 @@ import java.util.concurrent.locks.LockSupport;
  * @author youzhiyong
  */
 public class Test7 {
-
-    private static Thread a = null;
-    private static Thread b = null;
 
     public static void main(String[] args) {
 
