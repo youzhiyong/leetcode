@@ -1,6 +1,5 @@
 package com.yzy.thread.test.q1;
 
-import com.yzy.thread.ThreadUtils;
 
 /**
  * Description: 问题1 依次打印n次 AB, 一个线程打印A，另一个线程打印B

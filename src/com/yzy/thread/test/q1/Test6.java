@@ -1,8 +1,6 @@
 package com.yzy.thread.test.q1;
 
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.LockSupport;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Description:
