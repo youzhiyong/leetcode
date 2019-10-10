@@ -1,4 +1,4 @@
-package com.yzy.thread.create;
+package com.yzy.thread;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
@@ -9,7 +9,7 @@ import java.util.concurrent.FutureTask;
  *
  * @author youzhiyong
  */
-public class CreateThread {
+public class TestCreateThread {
 
     public static void main(String[] args) {
 
@@ -24,11 +24,11 @@ public class CreateThread {
         //2. 继承Thread类
         new MyThread().start();
 
-        //3. 实现Callnable接口
+        //3. 实现Callnable接口  实际上也是实现的Runnable接口
         FutureTask task = new FutureTask<>(new Callable<String>() {
             @Override
             public String call() throws Exception {
-                System.out.println("实现Runnable接口 ");
+                System.out.println("实现Callnable接口 ");
                 return null;
             }
         });

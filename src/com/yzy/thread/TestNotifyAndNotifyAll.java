@@ -1,6 +1,4 @@
-package com.yzy.thread.waitAndNotify;
-
-import com.yzy.thread.ThreadUtils;
+package com.yzy.thread;
 
 /**
  * Description:
@@ -26,8 +24,8 @@ public class TestNotifyAndNotifyAll {
 
 
         synchronized (Runner.class) {
-            //Runner.class.notify();   // 唤醒其中一个等待该锁的线程由 阻塞队列 进入 同步队列，进入同步队列的线程有机会获取到锁进入 RUNNABLE 状态，；另一个在阻塞队列为获取到锁的线程处于 WAITING状态
-            Runner.class.notifyAll(); // 唤醒所有等待该锁的线程由 阻塞队列 进去同步队列，进入同步队列的线程会有一个线程有机会获取到锁进入 RUNNABLE 状态,另一个在同步队列未获取到锁的线程处于 BLOCKED状态
+            Runner.class.notify();   // 唤醒其中一个等待该锁的线程由 阻塞队列 进入 同步队列，进入同步队列的线程有机会获取到锁进入 RUNNABLE 状态，；另一个在阻塞队列为获取到锁的线程处于 WAITING状态
+            //Runner.class.notifyAll(); // 唤醒所有等待该锁的线程由 阻塞队列 进去同步队列，进入同步队列的线程会有一个线程有机会获取到锁进入 RUNNABLE 状态,另一个在同步队列未获取到锁的线程处于 BLOCKED状态
         }
 
         ThreadUtils.sleep(1);
@@ -43,6 +41,7 @@ public class TestNotifyAndNotifyAll {
          12 -  runner-1 - BLOCKED     ---处于同步队列
          */
 
+        System.exit(0);
     }
 
     static class Runner implements Runnable {

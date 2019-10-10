@@ -1,6 +1,9 @@
 package com.yzy.thread.test.q1;
 
+import com.yzy.thread.ThreadUtils;
+
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -12,30 +15,13 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Test5 {
 
-    private static ReentrantLock reentrantLock = new ReentrantLock();
+    private static Lock reentrantLock = new ReentrantLock();
     private static Condition condition = reentrantLock.newCondition();
 
     public static void main(String[] args) {
 
 
-        new Thread(() -> {
-            try {
-                for (int i=0; i<10;i++) {
-                    System.out.print("A");
-                    reentrantLock.lock();
-                    try {
-                        condition.signal();
-                        condition.await();
-                    } finally {
-                        reentrantLock.unlock();
-                    }
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }).start();
-
+        //ThreadUtils.sleep(1);
         new Thread(() -> {
             try {
                 for (int i=0; i<10;i++) {
@@ -54,36 +40,17 @@ public class Test5 {
 
         }).start();
 
-
-    }
-
-
-    // 这里有个bug ,但打印A的线程先获取锁则会出现死锁
-    static void solution1() {
-
         new Thread(() -> {
             try {
                 for (int i=0; i<10;i++) {
-                    reentrantLock.lock();
-                    condition.await();
-                    System.out.println("B");
-                    condition.signal();
-                    reentrantLock.unlock();
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }).start();
-
-        new Thread(() -> {
-            try {
-                for (int i=0; i<10;i++) {
-                    reentrantLock.lock();
                     System.out.print("A");
-                    condition.signal();
-                    condition.await();
-                    reentrantLock.unlock();
+                    reentrantLock.lock();
+                    try {
+                        condition.signal();
+                        condition.await();
+                    } finally {
+                        reentrantLock.unlock();
+                    }
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -91,7 +58,8 @@ public class Test5 {
 
         }).start();
 
-    }
+        // 这里有个bug ,打印A的线程先获取锁并执行condition.signal();则会出现死锁
 
+    }
 
 }

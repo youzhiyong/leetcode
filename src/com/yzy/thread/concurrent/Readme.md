@@ -11,4 +11,4 @@ java.util.concurrent 包下的关于并发编程工具类的使用，如
              await() 用于将 n的数值减1
                 如减1后的值等于0，则获取成功，所有处于等待的线程都会终止等待状态，任何n的值恢复成初始值3
          Semaphore
-            信号量，可以初始化多个资源，当初始化资源数为1时和 ReentrantLock功能相同
+            信号量，可以初始化多个资源，Semaphore 只有3个操作：初始化/增加(release + 1)/减少(acquire - 1)

@@ -1,4 +1,4 @@
-package com.yzy.thread.concurrent;
+package com.yzy.thread;
 
 import com.yzy.thread.ThreadUtils;
 
@@ -50,7 +50,6 @@ public class TestExchanger {
                 data = 0;
                 System.out.println(getName()+" 交换前:" + data);
                 try {
-                    ThreadUtils.sleep(1);
                     data = exchanger.exchange(data);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

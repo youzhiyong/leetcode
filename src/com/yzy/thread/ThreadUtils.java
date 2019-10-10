@@ -39,10 +39,10 @@ public class ThreadUtils {
         Arrays.stream(threadInfos).forEach((info) -> {
             if (!printSystemThread) {
                 if (info.getThreadId() > 6) {
-                    System.out.println("" + info.getThreadId() + " - " + info.getThreadName() + " - " + info.getThreadState());
+                    System.out.println("ThreadId:" + info.getThreadId() + " - ThreadName:" + info.getThreadName() + " - ThreadState:" + info.getThreadState());
                 }
             } else {
-                System.out.println("" + info.getThreadId() + " - " + info.getThreadName() + " - " + info.getThreadState());
+                System.out.println("ThreadId:" + info.getThreadId() + " - ThreadName:" + info.getThreadName() + " - ThreadState:" + info.getThreadState());
             }
 
         });

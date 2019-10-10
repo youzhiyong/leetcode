@@ -1,4 +1,4 @@
-package com.yzy.thread.waitAndNotify;
+package com.yzy.thread;
 
 
 import com.yzy.thread.ThreadUtils;
@@ -13,18 +13,14 @@ public class TestThreadState {
 
     public static void main(String[] args) {
 
+        Thread thread = new Thread(new Running(), "new-00");
+
         // NEW
-        Thread thread = new Thread(new Waiting(), "new-00");
-
         System.out.println(thread.getId() + " - " + thread.getName() + " - " + thread.getState());
-
         thread.start();
-        ThreadUtils.sleep(1);
-        thread.interrupt();  //直接中断来结束线程  会抛出InterruptException
-
-        /*synchronized (Waiting.class) {
-            Waiting.class.notifyAll();  // 通过notifyAll()来让线程退出waiting状态 正常运行到结束
-        }*/
+        // Runnable
+        System.out.println(thread.getId() + " - " + thread.getName() + " - " + thread.getState());
+        thread.interrupt();  //将线程设置为已中断
         ThreadUtils.sleep(1);
         // TERMINATED
         System.out.println(thread.getId() + " - " + thread.getName() + " - " + thread.getState());
@@ -45,13 +41,22 @@ public class TestThreadState {
         ThreadUtils.printAllThreadStatus();
 
 
-        ThreadUtils.sleep(10);
+        //ThreadUtils.sleep(10);
 
 
         //打印线程信息
-        ThreadUtils.printAllThreadStatus();
+        //ThreadUtils.printAllThreadStatus();
 
+        System.exit(0);
 
+    }
+
+    static class Running implements Runnable {   // running
+        @Override
+        public void run() {
+                while (!Thread.interrupted()) {}
+
+        }
     }
 
     static class Waiting implements Runnable {   // waiting
@@ -61,7 +66,7 @@ public class TestThreadState {
                 try {
                     Waiting.class.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e.getMessage());
                 }
             }
         }

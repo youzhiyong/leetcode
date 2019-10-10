@@ -23,7 +23,6 @@ public class Test7 {
 
     static class A extends Thread {
         private Exchanger<Integer> exchanger;
-        private static int data = 0;
         A(Exchanger<Integer> exchanger) {
             this.exchanger = exchanger;
         }

@@ -1,4 +1,4 @@
-package com.yzy.thread.concurrent;
+package com.yzy.thread;
 
 import sun.misc.Unsafe;
 
@@ -128,4 +128,45 @@ public class MyLock implements Lock {
     public Condition newCondition() {
         return sync.newCondition();
     }
+
+
+    public static void main(String[] args) {
+        final Lock lock = new MyLock();
+
+        new Thread(() -> {
+
+            lock.lock();
+
+            try {
+                //while (true) {}
+                //ThreadUtils.sleep(1);
+            } finally {
+                lock.unlock();
+            }
+        }, "MyThread-A").start();
+
+        ThreadUtils.sleep(1);
+        new Thread(() -> {
+            lock.lock();
+            try {
+                //while (true) {}
+            } finally {
+                lock.unlock();
+            }
+        }, "MyThread-B").start();
+        ThreadUtils.sleep(1);
+        new Thread(() -> {
+            lock.lock();
+            try {
+                //while (true) {}
+            } finally {
+                lock.unlock();
+            }
+        }, "MyThread-C").start();
+
+
+
+    }
+
+
 }
