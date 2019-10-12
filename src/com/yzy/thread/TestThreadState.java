@@ -13,7 +13,7 @@ public class TestThreadState {
 
     public static void main(String[] args) {
 
-        Thread thread = new Thread(new Running(), "new-00");
+        /*Thread thread = new Thread(new Running(), "new-00");
 
         // NEW
         System.out.println(thread.getId() + " - " + thread.getName() + " - " + thread.getState());
@@ -24,7 +24,7 @@ public class TestThreadState {
         ThreadUtils.sleep(1);
         // TERMINATED
         System.out.println(thread.getId() + " - " + thread.getName() + " - " + thread.getState());
-
+*/
 
         // WAITING
         new Thread(new Waiting(), "waiting-01").start();

@@ -56,16 +56,6 @@ public class MyLock implements Lock {
         }
 
         @Override
-        protected int tryAcquireShared(int arg) {
-            return super.tryAcquireShared(arg);
-        }
-
-        @Override
-        protected boolean tryReleaseShared(int arg) {
-            return super.tryReleaseShared(arg);
-        }
-
-        @Override
         protected boolean isHeldExclusively() {
             return getState() == 1;
         }
@@ -130,6 +120,15 @@ public class MyLock implements Lock {
     }
 
 
+    /**
+     * 测试场景(AQS实现独占锁的获取和释放过程)包括：
+     * 1. 没有线程占有锁的状态下获取锁
+     * 2. 有线程占有锁但没有线程等待锁的状态下获取锁
+     * 3. 有线程占有锁同时还有线程在等待的状态下获取锁
+     * 4. 演示公平锁和非公平锁在获取锁时的区别
+     * 5. 演示释放锁后唤醒下一个线程获取锁的过程
+     * @param args
+     */
     public static void main(String[] args) {
         final Lock lock = new MyLock();
 
@@ -145,7 +144,6 @@ public class MyLock implements Lock {
             }
         }, "MyThread-A").start();
 
-        ThreadUtils.sleep(1);
         new Thread(() -> {
             lock.lock();
             try {
@@ -154,7 +152,7 @@ public class MyLock implements Lock {
                 lock.unlock();
             }
         }, "MyThread-B").start();
-        ThreadUtils.sleep(1);
+
         new Thread(() -> {
             lock.lock();
             try {
@@ -163,8 +161,6 @@ public class MyLock implements Lock {
                 lock.unlock();
             }
         }, "MyThread-C").start();
-
-
 
     }
 

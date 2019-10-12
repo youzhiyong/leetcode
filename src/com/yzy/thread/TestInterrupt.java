@@ -29,8 +29,8 @@ public class TestInterrupt {
             System.out.println("中断状态:" + Thread.currentThread().isInterrupted());
             System.out.println("中断状态:" + Thread.interrupted());
             Thread.currentThread().interrupt();
-            System.out.println("中断状态:" + Thread.interrupted());
             System.out.println("中断状态:" + Thread.currentThread().isInterrupted());
+            System.out.println("中断状态:" + Thread.interrupted());
 /*
             while (!Thread.interrupted()) {
                 //ThreadUtils.sleep(1);

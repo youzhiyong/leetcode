@@ -38,6 +38,9 @@ public class LeetCode198 {
 
     /**
      * 动态规划
+     * dp[1] = nums[1];
+     * dp[2] = max(nums[1],nums[2]);
+     * dp[3] = max(dp[2], dp[1] + nums[3])
      * 方程：dp[n] = max(dp[n - 1], dp[n - 2] + nums[n])
      * @param nums
      * @return
