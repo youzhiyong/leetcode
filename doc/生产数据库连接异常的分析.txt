@@ -1,0 +1,22 @@
+关于生产数据库连接异常的分析
+错误日志：
+The last packet successfully received from the server was 1,200,901 milliseconds ago. The last packet sen successfully to server was 1,200,901 milliseconds ago.
+
+
+看这段提示可知该连接最后一次可用是在 20分钟之前，可以看出这是连接池中定时检测机制出来的异常连接，但是由于缺少对连接池的了解，不能准确的定位到问题
+开始很长一段时间我都只是在业务代码中连接池的各种配置中找原因，但是始终没有找到有20分钟这个间隔时间的配置，因此对此很不理解
+
+今天基于DBCP连接池的源码深入了解了连接池的大部分参数之后，明确了可能会引发这个问题的配置，即对空闲连接的检测机制，
+包括两个主要参数：
+1. 两次检测空闲连接的时间间隔(TimeBetweenEvictionRunsMillis)，如每隔2分钟检测一次空闲连接 中的参数  2 分钟
+2. 判断空闲连接失效的时长(MinEvictableIdleTimeMillis)，如空闲5分钟则判断该空闲连接失效 中的参数 5 分钟， 当然需要保证空闲连接大于等于最小空闲数
+
+了解了这些参数之后，我再一次来到业务代码的连接池参数中找答案，结果发现这两个参数和想要找的20分钟相差较大，业务代码中的设置如下
+TimeBetweenEvictionRunsMillis=1分钟
+MinEvictableIdleTimeMillis=30分钟
+无奈之下只好转变思路，决定去mycat中间件中去找找，结果找到了久违的答案
+在mycat中间件的server.xml配置文件中，有一个idleTimeout参数，和 MinEvictableIdleTimeMillis 参数的含义相同，设置的是 20分钟！！！
+
+
+找到了原因，接下来就该寻找解决方案了...
+

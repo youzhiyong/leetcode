@@ -1,0 +1,24 @@
+tomcat调优
+
+1. conf/server.xml
+Executor    设置线程池
+	maxThreads
+	name
+
+Connector   设置连接
+	protocol  链接器类型
+				org.apache.coyote.http11.Http11Protocol - blocking Java connector (tomcat7,default)
+				org.apache.coyote.http11.Http11NioProtocol - non blocking Java connector
+				org.apache.coyote.http11.Http11Nio2Protocol - non blocking Java NIO2 connector(tomcat8,default)
+				org.apache.coyote.http11.Http11AprProtocol - the APR/native connector.
+	acceptCount  队列长度
+	executor     指定 引用前面设置的 Executor 线程池
+	maxThreads   最大线程数，若指定了executor，则这个值无效，被Executor中的maxThreads取代 default 200
+	maxConnections 最大连接数 与protocol链接器类型有关，bio中和maxThreads一致，nio中默认为10000， apr比较使用复杂
+
+
+
+2. bin/catalina.sh
+设置jvm参数
+例：JAVA_OPTS="-server -Xms4g -Xmx4g -XX:PermSize=256m -XX:MaxPermSize=512m -XX:NewRatio=3 -XX:SurvivorRatio=8 -XX:+PrintGCDateStamps -XX:+PrintGCDetails -Xloggc:/home/yzy/tomcat/logs/gc.log"
+详细jvm参数参考 src.com.yzy.jvm.JVM相关参数.txt

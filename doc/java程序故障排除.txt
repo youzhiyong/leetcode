@@ -1,0 +1,42 @@
+java进程：排查cpu利用率占用高的问题
+1. 定位异常进程，获取pid 进程id
+top  查询所有进程  CPU使用率
+
+2. 定位异常线程，获取tid 线程id
+ps -mp <pid> -o THREAD,tid,time     查询指定pid进程下的所有线程   线程占用cup时间，cpu使用率最高的线程
+top -Hp <pid>                       
+
+3. 获取16进制的tid
+printf "%x\n" <tid>   将线程id转换成16进制
+
+4. 打印/输出线程栈
+jstack <pid> |grep <tid> -A60   这里的tid是16进制    查看对应线程的线程栈， A60表示打印60行
+jstack <pid> > tDump.txt   输出对应进程的所有的线程栈到tDump.txt文件中
+
+5. 分析线程栈
+
+
+
+
+
+
+内存分析
+
+生产环境下慎用
+jmap -heap <pid> 查看对应java进程的jvm信息 各个内存区域的占用情况
+
+jmap -histo <pid>  查看堆内存中的对象数目、大小统计直方图，
+如果带上live则表示先进行一次fullgc 再统计内存使用情况，如下：
+jmap -histo:live <pid>
+
+jmap -dump:format=b,file=heapdump.phrof <pid>    输出完整的内存快照信息到heapdump.phrof文件中，需要使用工具进行分析
+
+java分析工具 - jvisualvm
+
+
+
+
+
+
+
+
