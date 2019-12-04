@@ -6,6 +6,7 @@ The last packet successfully received from the server was 1,200,901 milliseconds
 看这段提示可知该连接最后一次可用是在 20分钟之前，可以看出这是连接池中定时检测机制出来的异常连接，但是由于缺少对连接池的了解，不能准确的定位到问题
 开始很长一段时间我都只是在业务代码中连接池的各种配置中找原因，但是始终没有找到有20分钟这个间隔时间的配置，因此对此很不理解
 
+https://github.com/youzhiyong/test_dbcp/blob/master/src/main/java/com/yzy/test/BasicDataSourceExample.java
 今天基于DBCP连接池的源码深入了解了连接池的大部分参数之后，明确了可能会引发这个问题的配置，即对空闲连接的检测机制，
 包括两个主要参数：
 1. 两次检测空闲连接的时间间隔(TimeBetweenEvictionRunsMillis)，如每隔2分钟检测一次空闲连接 中的参数  2 分钟
