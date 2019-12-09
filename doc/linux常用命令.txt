@@ -1,0 +1,38 @@
+1. ps -ef|grep tomcat         查看名称为tomcat的进程
+2. tail -f error.log          监听error.log文件内容
+   tail -n 100 error.log      查看error.log最后100行
+   head -n 100 error.log      查看error.log开头100行
+3. grep -n "exception" | error.log  查看error.log中所有exception字符串出现的行数
+    vi +100 error.log         打开error.log文件，并将光标移动到第100行的位置
+4. cat error1.log error2.log error3.log | grep 'exception' | wc -l   合计error1.log error2.log error3.log三个文件中exception出现的总行数
+    wc  [选项]  [文件名]
+5. curl -X POST http://baidu.com/test -H 'Content-Type: application/json' -d '{"orderNum":"201802121712270"}'   curl请求 -X 请求方法  -H 请求头 -d 请求参数
+6. netstat -anp| grep 3306     查看3306端口是否被使用  or 是否有外部程序连接到3306端口
+如：
+$ netstat -anp | grep 3306
+tcp        0      0 0.0.0.0:3306           0.0.0.0:*               LISTEN      3501/java
+tcp        0      0 10.8.8.8:3306          10.8.8.1:59660         ESTABLISHED 3501/java
+tcp        0      0 10.8.8.8:3306          10.8.8.1:59668         ESTABLISHED 3501/java
+tcp        0      0 10.8.8.8:3306          10.8.8.2:50404         ESTABLISHED 3501/java
+tcp        0      0 10.8.8.8:3306          10.8.8.2:59659         ESTABLISHED 3501/java
+解析：本地内网ip10.8.8.8, 3306端口被java进程3501使用，并且外部有4个程序与3306端口建立了连接，分别是10.8.8.1机器上59660端口和59668端口，以及10.8.8.2机器上的50404和59659端口
+7. mysql -uroot -proot -P3306 -h 10.8.8.8   连接主机为10.8.8.8，端口为3306的mysql服务，用户名为root，密码为root
+    mysql -uroot -p
+8. mysql命令行
+    show databases;
+    use my_databases;
+    show tables;
+9. docker相关
+    docker images 列出本地所有镜像
+    docker search xxx  在镜像仓库搜索镜像xxx
+    docker pull xxx  下载镜像xxx到本地
+    docker rmi xxx   移除本地镜像xxx
+    docker run -itd --name xxx -p ss:ss xxx  基于xxx镜像启动容器，-d后台运行，--name别名，-p端口映射 本地端口:容器端口
+    docker exec -it xxx bash  进入xxx容器内
+    docker ps   查看运行中的容器
+    docker ps -a  查看所有容器
+    docker build -t xxx .    构建镜像xxx 注意后面有一个点. 表示在基于当前目录中的dockerfile构建，
+    docker push xxx 将本地构建好的xxx镜像上传到远程镜像仓库，若只需要本地使用，则不需要此操作，如单机服务
+10. nohup java -jar -Dspring.profiles.active=dev myserver.jar &       后台启动jar包程序
+11. history |grep java    查看历史命令中 带java关键词的命令
+
