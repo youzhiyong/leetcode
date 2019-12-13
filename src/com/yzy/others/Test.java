@@ -65,7 +65,7 @@ public class Test {
         System.out.println(b);*/
 
         //System.out.println(new Date().getTime());
-        /*Calendar calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         calendar.set(2019, Calendar.DECEMBER, 4);
         System.out.println(calendar.getTime());
         System.out.println(new Date());
@@ -78,7 +78,7 @@ public class Test {
         System.out.println(calendar2.getTime().getTime());
 
         System.out.println((calendar2.getTime().getTime() - calendar.getTime().getTime()) / 1000 / 60 / 60 / 24);
-*/
+
         /*
         select * from member where memberNum='13910711327';
 select * from member where memberNum='13910711327‬';

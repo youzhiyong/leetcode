@@ -36,3 +36,32 @@ tcp        0      0 10.8.8.8:3306          10.8.8.2:59659         ESTABLISHED 35
 10. nohup java -jar -Dspring.profiles.active=dev myserver.jar &       后台启动jar包程序
 11. history |grep java    查看历史命令中 带java关键词的命令
 
+12 cat access.log |awk '{s[$1] += 1}END{for(i in s){print i,s[i]}}' |sort -k2nr -t ' ' -o sort.log
+    解析：以access.log文件中 第一列 分组，统计相同的行数，并按照从大到小的顺序排序，输出到 sort.log文件中
+    s[$1] += 1}END{for(i in s){print i,s[i]}}
+    字段代码分为两个部分
+    统计 s[$1] += 1} 和输出 for(i in s){print i,s[i]}
+    s在这里就相当于一个map, key是第一列的值，value为出现的次数，统计完成后，先打印key，接着打印value
+
+    sort参数如下
+    -t	设置分隔符
+    -k	设置比较域（列）
+    -n	按数字比较
+    -g	科学记数法方式比较
+    -o	设置输出文件，与“>”相比可以设置输出到原文件，“>”会清空原文件
+    -r	降序（大->小）排列
+    -u	删除相同行
+    所以 sort -k2nr -t ' ' -o sort.log 表是分隔符为空格' ', 以第二列的数字降序排序并输出到 sort.log文件
+
+    例：access.log内容如下 6行数据
+    aaa
+    bbb
+    vvv
+    aaa
+    aaa
+    vvv
+
+    则执行之后sort.log中输出的结果如下：
+    aaa 3
+    vvv 2
+    bbb 1
