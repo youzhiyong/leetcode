@@ -1,13 +1,26 @@
 算法：leetCode、加密算法(MD5/对称加密/非对称加密)、空间复杂度/时间复杂度
 
 java基础：jdk特性、数据类型、多线程、锁、线程池
+    接口与抽象类: 抽象类是自底向上抽象而来的，接口是自顶向下设计出来的
 	重点类 HashMap/ConcurrentHashMap/Integer/String/AbstractQueuedSynchronizer/URLClassLoader/Executors
 
 JVM: java内存模型、gc收集器/策略/参数、类加载、JVM调优
 
-网络: http/https、TCP(三次握手、四次挥手、与UDP之间的差异、协议格式、滑动窗口、流量控制、拥塞控制、慢开始、快重传)、IP(DNS、ARP、NAT、ICMP、DHCP)、网络模型
+网络: http/https、TCP/IP协议族(TCP、IP、UDP、DNS、ARP、NAT、ICMP、DHCP)、网络模型
+    重点：TPC协议相关内容 三次握手、四次挥手、与UDP之间的差异、协议格式、滑动窗口、流量控制、拥塞控制、慢开始、快重传
+          OSI七层模型和TCP/IP四层模型：参考自顶向下设计(七层)和自底向上抽象(四层)
+          https://developer.51cto.com/art/201906/597961.htm
 
-框架: spring(IOC/AOP)、springMVC(一次web请求的过程)、Mybatis、微服务相关(服务注册与发现、配置中心、RPC调用、客户端负载、熔断/限流/服务降级、服务链路追踪、路由)SpringCloud、SpringBoot、Dubbo
+框架: spring(IOC/AOP)、springMVC(一次web请求的过程)、Mybatis(初始化)、微服务相关(服务注册与发现、配置中心、RPC调用、客户端负载、熔断/限流/服务降级、服务链路追踪、路由)SpringCloud、SpringBoot、Dubbo
+    重点：spring/springMVC中几个主要类的分析
+        Spring - FileSystemXmlApplicationContext 容器相关类 重点关注初始化过程(bean的定位、加载、解析、初始化、建立依赖关系) 主要接口(BeanFactory/ApplicationContext)
+               - BeanFactory 和 FactoryBean之间的区别
+               - AOP的实现场景、主要实现方式@see com/yzy/agent/Readme.txt
+        SpringMVC - DispatcherServlet 处理请求和分发的类 分析从客户端请求到服务端处理再到返回给客户端的整个流程
+        Mybatis - Configuration mybatis主配置类
+                - DefaultSqlSession 所有DAO层的代理实现类
+                - MapperRegistry 解析并关联mapper、DAO，生成对应的MapperProxy代理实现类
+                - MapperProxy 所有DAO层的代理实现类
 
 其他组件：redis(数据类型、特性、持久化机制)、mycat(与shadingJDBC的区别)、tomcat(调优)、nginx(配置)、docker、zookeeper、消息队列(作用、高可用、消息不重复、不丢失)、分布式锁/事务(实现)、ELK(日志系统)
 
