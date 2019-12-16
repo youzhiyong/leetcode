@@ -1,4 +1,4 @@
-package com.yzy.classLoad;
+package com.yzy.classLoad.init;
 
 /**
  * Description:
