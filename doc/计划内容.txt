@@ -24,4 +24,4 @@ JVM: java内存模型、gc收集器/策略/参数、类加载、JVM调优
 
 其他组件：redis(数据类型、特性、持久化机制)、mycat(与shadingJDBC的区别)、tomcat(调优)、nginx(配置)、docker、zookeeper、消息队列(作用、高可用、消息不重复、不丢失)、分布式锁/事务(实现)、ELK(日志系统)
 
-数据库: mysql(B+树/表结构设计/SQL优化/innodb原理/数据层面优化/事务/不同存储引擎之前的差异)
+数据库: mysql(B+树/表结构设计/SQL优化/innodb原理/数据层面优化/事务特性/隔离级别/不同存储引擎之前的差异)

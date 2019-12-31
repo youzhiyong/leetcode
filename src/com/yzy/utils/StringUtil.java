@@ -13,7 +13,7 @@ public class StringUtil {
      * @param str
      * @return
      */
-    private static String getEncode(String str) {
+    public static String getEncode(String str) {
         String encode = "GB2312";
         try {
             if (str.equals(new String(str.getBytes(encode), encode))) { //判断是不是GB2312
